@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="League 360.vcxproj" />
+  <Project Path="League 360.vcxproj" Id="c82d2549-d0d2-4a2d-b25f-4cc6a949aa35" />
 </Solution>

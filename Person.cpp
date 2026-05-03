@@ -59,3 +59,5 @@ void Person::setNationality(const string& nat)
 	}
 	this->nationality = nat;
 }
+
+Person::~Person() {}

@@ -1,27 +1,33 @@
 #include "Player.h"
 #include <iostream>
+#include <stdexcept> //For throw and catch exception handling
 using namespace std;
 
 
 
 //CONSTRUCTOR
 
-Player::Player(Person* person, string position, int jerseyNumber, int teamID): personInfo(person), position(position), jerseyNumber(jerseyNumber), 
-teamID(teamID), goalsScored(0), assists(0), appearances(0) //Initialize goals, assists, appearances to 0 and the rest with the provided values
+Player::Player(int id, string Pname, int P_age, string Pnationality, string pos, int jerseyNum, int tID, int Pappearance) 
+    : Person(id, Pname, P_age, Pnationality) , 
+    position(pos), 
+    jerseyNumber(jerseyNum),
+    teamID(tID),          
+    goalsScored(0),       
+    assists(0),           
+    appearances(Pappearance)
 {
-    if (person == nullptr)
-    {
-        cout << "Error: Player must have a valid Person." << endl;
-        isValid = false;
-    }
-}
+    if (Pname.empty())
+        throw invalid_argument("Player name cannot be empty.");
+    if (P_age <= 0 || P_age > 100)
+        throw invalid_argument("Invalid age.");
+    if (jerseyNum <= 0)
+        throw invalid_argument("Jersey number must be above 0.");
+}  
+
 
 //GETTERS
 
-Person* Player::getPerson()const 
-{
-	return personInfo;
-}
+
 
 string Player::getPosition() const 
 {
@@ -107,20 +113,21 @@ void Player::addAppearance()
     appearances++;
 }
 
+bool Player::isInTeam() const
+{
+    return teamID != -1;
+}
+
 //Display player info
 
-void Player::displayInfo() const
+void Player::displayInfo() const 
 {
-    if (personInfo == nullptr) {
-        cout << "No such player exists" << endl;
-        return;
-    }
 
     cout << "----- PLAYER INFO -----" << endl;
 
-    cout << "Name: " << personInfo->getName() << endl;
-    cout << "Age: " << personInfo->getAge() << endl;
-    cout << "Nationality: " << personInfo->getNationality() << endl;
+    cout << "Name: " << getName() << endl;
+    cout << "Age: " << getAge() << endl;
+    cout << "Nationality: " << getNationality() << endl;
     cout << "Position: " << position << endl;
     cout << "Jersey Number: " << jerseyNumber << endl;
     cout << "Goals: " << goalsScored << endl;
@@ -131,5 +138,4 @@ void Player::displayInfo() const
         cout << "Team: Free Agent" << endl;
     else
         cout << "Team ID: " << teamID << endl << endl;
-
 }

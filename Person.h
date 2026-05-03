@@ -19,13 +19,13 @@ public:
     string getName() const;
     int getAge() const;
     string getNationality() const;
+    virtual void displayInfo() const = 0;
 
     void setName(const string& name);
     void setAge(int age);
     void setNationality(const string& nat);
 
-    virtual void displayInfo() const = 0;
-    virtual string getRole() const = 0;
+ 
 
     virtual ~Person();
 };
