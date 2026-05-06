@@ -139,3 +139,5 @@ void Player::displayInfo() const
     else
         cout << "Team ID: " << teamID << endl << endl;
 }
+
+Player::~Player() {}

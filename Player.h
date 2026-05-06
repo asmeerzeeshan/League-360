@@ -6,7 +6,6 @@ using namespace std;
 class Player : public Person  // ← inherit
 {
 private:
-    // Remove Person* personInfo — Player IS a Person now
     string position;
     int jerseyNumber;
     int goalsScored;
@@ -36,4 +35,5 @@ public:
     void addAssist();
     void addAppearance();
     bool isInTeam() const;
+    virtual ~Player();
 };
